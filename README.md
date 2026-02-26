@@ -1,4 +1,4 @@
-[![Watch the video](https://img.youtube.com/vi/35RTzn5oJUU/0.jpg)](https://www.youtube.com/watch?v=35RTzn5oJUU)
+[![Watch the video](https://img.youtube.com/vi/xyCZR3qLg0c/0.jpg)](https://www.youtube.com/watch?v=xyCZR3qLg0c)
 
 I vibe coded this extension with Claud code. I have no idea how the codes work neither any potential security risk. Use it at your own risk.
 
