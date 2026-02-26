@@ -1,0 +1,3 @@
+/* AI Chat Navigator — page body shift only. All UI is in Shadow DOM. */
+body.nav-open   { padding-right: var(--nav-w, 300px) !important; box-sizing: border-box !important; transition: padding-right 0.3s ease !important; }
+body.nav-closed { padding-right: 0 !important; transition: padding-right 0.3s ease !important; }

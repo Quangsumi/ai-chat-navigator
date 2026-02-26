@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Chat Navigator</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { width: 272px; background: #0d0d10; color: #e0e0f0; font-family: system-ui, sans-serif; }
+
+    .header {
+      padding: 14px 15px 11px;
+      border-bottom: 1px solid #1e1e2c;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .logo {
+      width: 28px; height: 28px;
+      background: linear-gradient(135deg, #74d7a0, #5ab4f5, #e8a87c);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; flex-shrink: 0;
+    }
+    .logo-info h1 { font-size: 13px; font-weight: 700; letter-spacing: -.2px; }
+    .logo-info p  { font-size: 8px; color: #404055; letter-spacing: .5px; margin-top: 2px; font-family: monospace; }
+
+    .sites { padding: 9px 12px 11px; display: flex; flex-direction: column; gap: 6px; }
+
+    .row {
+      display: flex; align-items: center; gap: 9px;
+      padding: 9px 10px;
+      background: #13131a; border: 1px solid #1e1e2c;
+      border-radius: 8px; cursor: pointer;
+      transition: border-color .15s, background .15s;
+      user-select: none;
+    }
+    .row:hover { background: #161622; }
+
+    .ri { width: 24px; height: 24px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
+    .ri.chatgpt { background: rgba(116,215,160,.13); }
+    .ri.gemini  { background: rgba(90,180,245,.13); }
+    .ri.claude  { background: rgba(232,168,124,.13); }
+
+    .rinfo { flex: 1; min-width: 0; }
+    .rinfo strong { display: block; font-size: 11px; font-weight: 700; }
+    .rinfo span   { font-size: 8px; color: #404055; font-family: monospace; }
+
+    .row[data-s="chatgpt"].on { border-color: rgba(116,215,160,.4); background: rgba(116,215,160,.04); }
+    .row[data-s="gemini"].on  { border-color: rgba(90,180,245,.4);  background: rgba(90,180,245,.04);  }
+    .row[data-s="claude"].on  { border-color: rgba(232,168,124,.4); background: rgba(232,168,124,.04); }
+
+    .sw { position: relative; width: 36px; height: 20px; flex-shrink: 0; }
+    .sw input { opacity: 0; width: 0; height: 0; }
+    .sl { position: absolute; inset: 0; background: #252535; border-radius: 20px; transition: background .2s; }
+    .sl::before { content: ''; position: absolute; width: 14px; height: 14px; left: 3px; top: 3px; background: #404055; border-radius: 50%; transition: transform .2s, background .2s; }
+    input:checked + .sl::before { transform: translateX(16px); }
+
+    .row[data-s="chatgpt"] input:checked + .sl { background: rgba(116,215,160,.3); }
+    .row[data-s="chatgpt"] input:checked + .sl::before { background: #74d7a0; }
+    .row[data-s="gemini"]  input:checked + .sl { background: rgba(90,180,245,.3); }
+    .row[data-s="gemini"]  input:checked + .sl::before { background: #5ab4f5; }
+    .row[data-s="claude"]  input:checked + .sl { background: rgba(232,168,124,.3); }
+    .row[data-s="claude"]  input:checked + .sl::before { background: #e8a87c; }
+
+    .hint { margin: 0 12px 11px; padding: 8px 11px; background: #13131a; border: 1px solid #1e1e2c; border-radius: 7px; font-size: 8px; color: #404055; line-height: 1.8; font-family: monospace; }
+    .hint b { color: #74d7a0; }
+    .footer { padding: 8px 12px; border-top: 1px solid #1a1a25; font-size: 7px; color: #252535; letter-spacing: 1px; text-align: center; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">⌘</div>
+    <div class="logo-info">
+      <h1>AI Chat Navigator</h1>
+      <p>RESIZABLE TABLE OF CONTENTS · v6</p>
+    </div>
+  </div>
+
+  <div class="sites">
+    <div class="row" data-s="chatgpt">
+      <div class="ri chatgpt">🤖</div>
+      <div class="rinfo"><strong>ChatGPT</strong><span>chatgpt.com</span></div>
+      <label class="sw" onclick="event.stopPropagation()"><input type="checkbox" data-key="nav_chatgpt"><span class="sl"></span></label>
+    </div>
+    <div class="row" data-s="gemini">
+      <div class="ri gemini">✦</div>
+      <div class="rinfo"><strong>Gemini</strong><span>gemini.google.com</span></div>
+      <label class="sw" onclick="event.stopPropagation()"><input type="checkbox" data-key="nav_gemini"><span class="sl"></span></label>
+    </div>
+    <div class="row" data-s="claude">
+      <div class="ri claude">✺</div>
+      <div class="rinfo"><strong>Claude</strong><span>claude.ai</span></div>
+      <label class="sw" onclick="event.stopPropagation()"><input type="checkbox" data-key="nav_claude"><span class="sl"></span></label>
+    </div>
+  </div>
+
+  <div class="hint">
+    <b>↔</b> Drag left edge to resize panel<br>
+    <b>⌘</b> Floating button toggles sidebar<br>
+    <b>→</b> Click any question to jump there
+  </div>
+  <div class="footer">THREE AI SITES · NO COPILOT</div>
+  <script src="popup.js"></script>
+</body>
+</html>
